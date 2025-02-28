@@ -1,0 +1,25 @@
+.res-page-title{
+    font-size: 34px;
+}
+.res-page-subtitle{
+    font-size: 26px;
+}
+
+.colors-image-select{
+    width: 60px;
+    border-radius: 8px;
+}
+
+@media only screen and (max-width: 768px) {
+    .res-page-title{
+        font-size: 24px;
+    }
+    .res-page-subtitle{
+        font-size: 20px;
+    }
+    .colors-image-select{
+        width: 45px;
+
+    }
+
+}
