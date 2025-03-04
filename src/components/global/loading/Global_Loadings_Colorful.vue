@@ -19,7 +19,7 @@ export default {
   <div class="text-center">
     <img src="assets/images/icons/loading_animation.svg" :width="image_width" alt="">
     <div style="margin-top: -15px!important;">
-      <strong class="text-deep-purple">{{text}}</strong>
+      <strong class="text-teal-9">{{text}}</strong>
     </div>
   </div>
 </template>

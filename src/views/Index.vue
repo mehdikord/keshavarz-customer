@@ -1,6 +1,4 @@
 <script>
-import Index_Services_Box from "@/views/index/Index_Services_Box.vue";
-import Index_Question_Box from "@/views/index/Index_Question_Box.vue";
 
 export default {
   name: "Index",

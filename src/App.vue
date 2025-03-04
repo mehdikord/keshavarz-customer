@@ -49,7 +49,9 @@ export default {
 }
 .menu-box{
   background-color: rgba(11, 24, 56, 0.93) !important;
-  padding: 1px 2px 3px 2px;
+  padding: 4px 2px 3px 2px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   color: black;
 
 }

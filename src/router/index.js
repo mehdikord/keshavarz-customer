@@ -5,7 +5,6 @@ import About from "@/views/about/About.vue";
 import Contact from "@/views/contact/Contact.vue";
 import Profile from "@/views/profile/Profile.vue";
 import {Stores_Auth} from "@/stores/auth/auth.js";
-import Plans from "@/views/plans/Plans.vue";
 import Searching from "@/views/searching/Searching.vue";
 import Requests from "@/views/requests/Requests.vue";
 import Lands from "@/views/lands/Lands.vue";
@@ -18,7 +17,7 @@ const router = createRouter({
       component : Index,
       name : 'index',
       meta : {
-        title : "پرگولا"
+        title : "کشاورز"
       }
     },
     {
@@ -34,7 +33,7 @@ const router = createRouter({
       component : About,
       name : 'about',
       meta : {
-        title : "درباره پرگولا"
+        title : "درباره کشاورز"
       }
     },
     {
@@ -44,14 +43,6 @@ const router = createRouter({
       meta : {
         title : "تماس با ما"
       }
-    },
-    {
-      path : '/plans',
-      component : Plans,
-      name : 'plans',
-      meta : {
-        title : "مدیریت اشتراک ها"
-      },
     },
     {
       path : '/searching',

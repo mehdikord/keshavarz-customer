@@ -1,44 +1,33 @@
 import { defineStore } from 'pinia'
-export const Stores_Services = defineStore('service',{
+export const Stores_Lands = defineStore('lands',{
     actions : {
-        Coloring_Create(items){
+        Index(){
             return new Promise((resolve, reject) => {
-                axios.post('/users/services/coloring',items).then(response =>{
+                axios.get('/users/lands').then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
                 })
             })
         },
-        Store_Answer(items){
+        Store(params){
             return new Promise((resolve, reject) => {
-                axios.post('/users/questions',items).then(response =>{
+                axios.post('/users/lands',params).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
                 })
             })
         },
-        Get_Answer(){
+        Remove(id){
             return new Promise((resolve, reject) => {
-                axios.get('/users/questions').then(response =>{
+                axios.delete('/users/lands/'+id).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
                 })
             })
         },
-        Remove_Answer(id){
-            return new Promise((resolve, reject) => {
-                axios.delete('/users/questions/'+id).then(response =>{
-                    return resolve(response);
-                }).catch(error =>{
-                    return reject(error);
-                })
-            })
-        },
-
-
 
     },
 
