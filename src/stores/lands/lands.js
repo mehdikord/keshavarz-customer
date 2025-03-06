@@ -19,6 +19,15 @@ export const Stores_Lands = defineStore('lands',{
                 })
             })
         },
+        Edit(params){
+            return new Promise((resolve, reject) => {
+                axios.post('/users/lands/'+params.id,params).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+        },
         Remove(id){
             return new Promise((resolve, reject) => {
                 axios.delete('/users/lands/'+id).then(response =>{

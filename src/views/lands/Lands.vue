@@ -3,19 +3,25 @@ import {Stores_Auth} from "@/stores/auth/auth.js";
 import {Stores_Lands} from "@/stores/lands/lands.js";
 import Global_Map_Satelite from "@/components/global/map/Global_Map_Satelite.vue";
 import { useQuasar} from 'quasar'
+import Lands_Edit from "@/views/lands/Lands_Edit.vue";
 
 export default {
   name: "Lands",
   components:{
     'map_satelite' : Global_Map_Satelite,
+    'lands_edit' : Lands_Edit,
   },
   mounted() {
-    this.Get_Items()
+    if (Stores_Auth().AuthGetCheckAuth){
+      this.Get_Items()
+
+    }
   },
   data(){
     return {
       $q: useQuasar(),
       dialog_add:false,
+      dialog_edit:[],
       add_items:{
         title:null,
         description:null,
@@ -57,6 +63,18 @@ export default {
         this.add_loading=false;
 
       })
+    },
+    Edit_Item(item){
+      this.items.map(get_item => {
+        if (get_item.id === item.id){
+          return item;
+        }else {
+          return get_item;
+        }
+      })
+      this.dialog_edit[item.id]=false;
+      this.Methods_Notify_Message_Success('اطلاعات زمین باموفقیت ویراش شد')
+
     },
     Remove_Item(id){
       this.$q.dialog({
@@ -127,6 +145,7 @@ export default {
       <q-card-section class="q-pt-sm animation-fade-in">
         <div class="text-center">
           <q-btn @click="dialog_add=true" class="q-py-sm q-px-xl" rounded color="teal-8" icon="fa-duotone fa-square-plus fa-light" label="افزودن زمین (مزرعه) جدید"></q-btn>
+
           <q-dialog
               v-model="dialog_add"
               position="top"
@@ -205,7 +224,28 @@ export default {
                 <div>
                   <strong class="text-teal-8 font-16">{{item.title}}</strong>
                   <q-btn @click="Remove_Item(item.id)" :loading="remove_loading[item.id]" color="red-7" class="float-right" size="xs" round icon="fa-duotone fa-light fa-trash"></q-btn>
-                  <q-btn color="blue-7" class="float-right q-mr-sm " size="xs" round icon="fa-duotone fa-light fa-pencil"></q-btn>
+                  <q-btn @click="dialog_edit[item.id]=true" color="blue-7" class="float-right q-mr-sm " size="xs" round icon="fa-duotone fa-light fa-pencil"></q-btn>
+
+                  <q-dialog
+                      v-model="dialog_edit[item.id]"
+                      position="top"
+                  >
+                    <q-card style="width: 100%">
+                      <q-card-section class="row items-center q-pb-none">
+                        <div>
+                          <strong class="text-teal-7 font-15">ویرایش اطلاعات زمین : <strong class="text-red-7">{{item.title}}</strong></strong>
+                        </div>
+                        <q-space />
+                        <q-btn icon="fa-duotone fa-times fa-regular" color="red" round size="xs" v-close-popup />
+                      </q-card-section>
+                      <q-separator class="q-mt-md" />
+                      <q-card-section>
+                        <lands_edit @Updated="get_item => Edit_Item(get_item)" :land="item"></lands_edit>
+                      </q-card-section>
+                    </q-card>
+                  </q-dialog>
+
+
                 </div>
                 <div class="q-mt-xs">
                   <span class="text-grey-8">متراژ : </span>
