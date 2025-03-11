@@ -8,6 +8,7 @@ import {Stores_Auth} from "@/stores/auth/auth.js";
 import Searching from "@/views/searching/Searching.vue";
 import Requests from "@/views/requests/Requests.vue";
 import Lands from "@/views/lands/Lands.vue";
+import Provider_Profile from "@/views/providers/Provider_Profile.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,6 +51,14 @@ const router = createRouter({
       name : 'searching',
       meta : {
         title : "جستجو خدمات"
+      },
+    },
+    {
+      path : '/providers/profile/:id',
+      component : Provider_Profile,
+      name : 'providers_profile',
+      meta : {
+        title : "پروفایل خدمات دهنده"
       },
     },
     {

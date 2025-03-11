@@ -1,4 +1,5 @@
 import {QSpinnerGears, useQuasar} from 'quasar'
+import moment from "moment-jalaali";
 
 
 export default {

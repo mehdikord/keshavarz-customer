@@ -19,25 +19,6 @@ export const Stores_Profile = defineStore('profile',{
                 })
             })
         },
-        Invoices_Get(){
-            return new Promise((resolve, reject) => {
-                axios.get('/users/invoices').then(response =>{
-                    return resolve(response);
-                }).catch(error =>{
-                    return reject(error);
-                })
-            })
-        },
-        Invoices_Show(id){
-            return new Promise((resolve, reject) => {
-                axios.get('/users/invoices/'+id).then(response =>{
-                    return resolve(response);
-                }).catch(error =>{
-                    return reject(error);
-                })
-            })
-        },
-
     },
 
 
