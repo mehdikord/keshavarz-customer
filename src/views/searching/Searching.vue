@@ -18,6 +18,8 @@ export default {
     }
     this.Get_Categories();
     this.Get_Implements();
+    this.Get_Request_Users();
+
   },
   data() {
     return {
@@ -71,7 +73,6 @@ export default {
       ],
       filter_select : 'random',
       requested_providers:[],
-
     }
   },
   methods: {
@@ -139,8 +140,15 @@ export default {
         })
       })
     },
-    Send_Request(){
-
+    Get_Request_Users(){
+      if (this.providers && this.providers.request){
+        this.requested_providers = [];
+        Stores_Searching().Searching_Request_Users(this.providers.request.id).then(res=>{
+          this.requested_providers = res.data.result;
+        }).catch(error=>{
+          this.Methods_Notify_Error_Server();
+        })
+      }
     },
     Filter_Category_Select (val, update, abort) {
       update(() => {
@@ -208,7 +216,8 @@ export default {
         }
       }
 
-    }
+    },
+
   }
 
 }
@@ -387,13 +396,16 @@ export default {
                 <strong class="text-red-7">متاسفانه برای {{providers.request.implement.name}} هیچ خدمات دهنده ای در نزدیکی شما یافت نشد !</strong>
               </div>
               <div class="q-mt-lg">
-                <q-btn @click="Reset_Search()" color="teal-7" class="q-pt-sm q-pb-sm" rounded icon="fa-duotone fa-light fa-refresh" label="جستجتو مجدد خدمات "></q-btn>
+                <q-btn @click="Reset_Search()"  color="teal-7" class="q-pt-sm q-pb-sm" rounded icon="fa-duotone fa-light fa-refresh" label="جستجتو مجدد خدمات "></q-btn>
               </div>
             </div>
           </template>
           <template v-else>
             <div class="text-center text-grey-10">
               <span>تعداد : <strong class="text-red-8 font-16"> {{providers.result.length}} </strong> خدمات دهنده برای <strong class="text-dark">{{providers.request.implement.name}}</strong>  یافت شد </span>
+              <div class="q-mt-md">
+                <strong class="text-teal-8">برای مشاهده کامل و لغو درخواست به صفحه درخواست ها بروید</strong>
+              </div>
               <q-banner v-if="show_message_one" dense class="bg-teal-7 rounded-borders q-mt-sm text-white text-justify">
                 <q-btn class="q-mr-sm" @click="show_message_one = false" push round size="xs" color="white" text-color="red-8" icon="fa-duotone fa-times fa-regular"></q-btn>
                   با بررسی شرایط درخواست خود را برای خدمات دهندگان ارسال کنید و در صورت تایید خدمات دهنده ، شماره تماس خدمات دهنده برای شما ارسال میشود
@@ -404,6 +416,7 @@ export default {
               <div class="q-mt-sm" >
                 <q-select
                     outlined
+                    rounded
                     color="indigo"
                     transition-show="flip-up"
                     transition-hide="flip-down"
@@ -441,7 +454,10 @@ export default {
                   برای اطلاعات بیشتر میتوانید با کلیک روی تصویر یا اسم خدمات دهنده وارد پروفایل او شوید
                 </div>
               </q-banner>
-              <provider_single v-for="provider in providers.result" :provider="provider" :request_id="providers.request.id" class="q-mb-lg"></provider_single>
+              <div class="text-center q-mb-md">
+                <q-btn @click="Reset_Search" color="primary" rounded push label="جستجو جدید خدمات" class="font-13 q-pb-sm q-pt-sm" icon="fa-duotone fa-regular fa-search"></q-btn>
+              </div>
+              <provider_single :requested="requested_providers" @Requested="Get_Request_Users" v-for="provider in providers.result" :provider="provider" :request_id="providers.request.id" class="q-mb-lg"></provider_single>
             </div>
           </template>
 

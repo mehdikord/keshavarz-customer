@@ -2,18 +2,17 @@
 
 import Template_Main_Header from "@/components/Templates/Template_Main_Header.vue";
 import Template_Main_Footer from "@/components/Templates/Template_Main_Footer.vue";
-import ComingSoon from "@/views/ComingSoon.vue";
 
 export default {
   name: "App",
   components :{
     "template_header" : Template_Main_Header,
     "template_footer" : Template_Main_Footer,
-    'coming_soon' : ComingSoon,
+
   },
   data(){
     return {
-      launching : 1,
+
     }
   }
 }

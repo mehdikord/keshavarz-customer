@@ -7,6 +7,8 @@ export default {
   data(){
     return {
       loading:false,
+      remove_loading: false,
+      requested_providers:[],
 
     }
   },
@@ -18,23 +20,40 @@ export default {
         "user_id" : this.provider.user.id
       }
       Stores_Searching().Searching_Send_Request(params).then(res => {
-        this.$emit('Requested')
+        this.$emit('Requested');
 
       }).catch(error => {
 
       })
 
 
+    },
+    Get_Status(user_id){
+      let result;
+      if (this.requested.length > 0) {
+        this.requested.forEach(item => {
+          if (item.user_id === user_id) {
+            result = item;
+          }
+        })
+      }
+      if (result){
+        return result.status;
+      }else {
+        return null;
+      }
     }
-  }
+  },
 }
 </script>
 
 <template>
+  {{  }}
   <div v-if="provider" class="provider-box q-mb-lg animation-fade-in">
     <div class="row">
       <div class="col-6 row">
         <div class="col-4">
+
           <router-link :to="{name : 'providers_profile', params:{id:provider.user.id}}">
             <img src="assets/images/icons/user-profile.svg" width="55" />
           </router-link>
@@ -54,9 +73,17 @@ export default {
         <strong class="text-deep-purple-8 font-15">{{ this.$filters.number_format(provider.price)}}</strong>
         <span class="text-grey-8 font-12 q-ml-xs">تومان</span>
         <span class="text-dark font-13 font-weight-600 q-ml-xs">{{provider.price_type}}</span>
-        <div class="q-mt-lg">
-          <q-btn @click="Send_Request" :loading="loading" rounded outline color="teal-6" label="ارسال درخواست" class="font-13" size="sm"></q-btn>
+      </div>
+      <div class="col-12">
+        <div class="text-right">
+          <template v-if="Get_Status(provider.user.id) === 'pending'">
+            <q-btn rounded icon="fa-duotone fa-light fa-hourglass-clock fa-fade" color="yellow-10" text-color="dark" label="درانتظار تایید" class="font-12" size="sm"></q-btn>
+          </template>
+          <template v-else>
+            <q-btn @click="Send_Request" :loading="loading" rounded outline color="teal-6" label="ارسال درخواست" class="font-13" size="sm"></q-btn>
+          </template>
         </div>
+
       </div>
     </div>
   </div>

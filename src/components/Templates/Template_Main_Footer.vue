@@ -11,9 +11,9 @@ export default {
 
       <div class="col text-center">
         <router-link :to="{name : 'auth'}" title="حساب کاربری">
-          <q-btn class="icon-size" v-if="this.$route.name === 'auth'" flat icon="fa-duotone fa-regular fa-user-vneck text-green-5" color="white"></q-btn>
+          <q-btn class="icon-size" v-if="this.$route.name === 'auth' || this.$route.name === 'profile'" flat icon="fa-duotone fa-regular fa-user-vneck text-green-5" color="white"></q-btn>
           <q-btn class="icon-size" v-else icon="fa-duotone fa-regular fa-user-vneck text-white" flat color="white"></q-btn>
-          <div v-if="this.$route.name === 'auth'" class="text-white font-12 text-green-5">پروفایل</div>
+          <div v-if="this.$route.name === 'auth' || this.$route.name === 'profile'" class="text-white font-12 text-green-5">پروفایل</div>
           <div v-else class="text-white font-12">پروفایل</div>
 
         </router-link>

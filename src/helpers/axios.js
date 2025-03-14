@@ -12,8 +12,8 @@ window.axios.interceptors.response.use(
     },
     error => {
         if (error.response.status === 401) {
-            localStorage.removeItem('pergola_token');
-            localStorage.removeItem('pergola_user');
+            localStorage.removeItem('customer_keshavarz_token');
+            localStorage.removeItem('customer_keshavarz_user');
             window.location.href = '/auth';
         }
 
