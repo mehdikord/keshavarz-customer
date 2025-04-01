@@ -120,8 +120,79 @@ export default {
             return moment(date, 'jYYYY/jM/jD').format('YYYY-M-D')
         },
 
+        Methods_FormatUnixTimestamp(unixTimestamp) {
+            const date = new Date(unixTimestamp * 1000);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const seconds = String(date.getSeconds()).padStart(2, '0');
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        },
+
         Methods_Date_Gregorian_To_Jalali(date){
             return moment(date, 'YYYY-M-D').format('jYYYY-jMM-jDD')
+        },
+        Methods_Parse_Weather_Code(code){
+            let icon;
+            let text;
+            switch(code){
+                case 0 :
+                    icon = '01d.svg';
+                    text = 'clear sky'
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                    icon = '02d.svg';
+                    text = 'few clouds';
+                    break;
+                case 45:
+                case 48:
+                    icon = '50d.svg';
+                    text = 'mist'
+                    break;
+                case 51:
+                case 53:
+                case 55:
+                case 56:
+                case 57:
+                case 61:
+                case 63:
+                case 65:
+                case 66:
+                case 67:
+                    icon = '10d.svg';
+                    text = 'rain';
+                    break;
+                case 71:
+                case 73:
+                case 75:
+                case 77:
+                case 85:
+                case 86:
+                    icon = '13d.svg';
+                    text = 'snow'
+                    break;
+                case 80:
+                case 81:
+                case 82:
+                    icon = '09d.svg';
+                    text = 'shower rain';
+                    break;
+                case 95:
+                case 96:
+                case 99:
+                    icon = '11d.svg';
+                    text = 'thunderstorm';
+                    break;
+                default:
+                    icon = '';
+                    text = 'unknown';
+                    break;
+            }
+            return {icon:icon, text:text};
         }
 
 

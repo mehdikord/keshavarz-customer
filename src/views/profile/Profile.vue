@@ -261,7 +261,7 @@ export default {
                 </q-card-section>
                 <q-card-actions align="right" class="q-mb-sm">
                   <q-btn v-close-popup rounded color="blue-grey-7" icon="fa-duotone fa-light fa-times" label="بستن"></q-btn>
-                  <q-btn @click="Edit_Profile" :loading="edit_loading" rounded color="primary" icon="fa-duotone fa-light fa-check" label="ثبت اطلاعات"></q-btn>
+                  <q-btn @click="Edit_Profile" :loading="edit_loading" rounded color="teal-8" icon="fa-duotone fa-light fa-check" label="ثبت اطلاعات"></q-btn>
                 </q-card-actions>
               </q-card>
             </q-dialog>
@@ -287,7 +287,7 @@ export default {
               <strong class="q-ml-xs text-grey-9 font-13"> : {{user.bio}}</strong>
             </div>
             <div class="col-12 q-mt-md text-center">
-              <q-btn class="font-13" @click="edit_dialog=true" label="ویرایش اطلاعات کاربری" push color="primary" rounded icon="fa-duotone fa-pencil fa-light"></q-btn>
+              <q-btn class="font-13 q-pt-sm q-pb-sm" @click="edit_dialog=true" label="ویرایش اطلاعات کاربری" push color="teal-8" rounded icon="fa-duotone fa-pencil fa-light"></q-btn>
             </div>
 
           </div>

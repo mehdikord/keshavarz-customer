@@ -2,16 +2,24 @@
 
 import Template_Main_Header from "@/components/Templates/Template_Main_Header.vue";
 import Template_Main_Footer from "@/components/Templates/Template_Main_Footer.vue";
+import Splash from "@/views/Splash.vue";
 
 export default {
   name: "App",
   components :{
     "template_header" : Template_Main_Header,
     "template_footer" : Template_Main_Footer,
+    'splash' : Splash,
 
+  },
+  mounted() {
+    if (localStorage.getItem('keshavarz_customers_splash') !== 'done'){
+      this.splash = true;
+    }
   },
   data(){
     return {
+      splash : false,
 
     }
   }
@@ -20,10 +28,10 @@ export default {
 
 <template>
 
-
-  <q-layout view="lHh Lpr lFf">
+  <splash v-if="splash"></splash>
+  <q-layout v-else view="lHh Lpr lFf">
     <div class="app-container">
-        <q-header class="header-bg" elevated style=" margin: 0 auto">
+        <q-header v-if="this.$route.name !== 'auth'" class="header-bg" elevated style=" margin: 0 auto">
           <template_header></template_header>
         </q-header>
         <q-drawer  side="left" behavior="mobile" elevated>
@@ -32,12 +40,14 @@ export default {
         <q-page-container>
           <router-view/>
         </q-page-container>
-        <q-footer class="footer-style bg-transparent">
+        <q-footer v-if="this.$route.name !== 'auth'" class="footer-style bg-transparent">
           <template_footer></template_footer>
         </q-footer>
     </div>
 
   </q-layout>
+
+
 </template>
 <style>
 
@@ -55,7 +65,7 @@ export default {
 
 }
 .header-bg{
-  background-color: rgba(11, 24, 56, 0.93) !important;
+  background-color: rgba(11, 24, 56, 0.98) !important;
 }
 
 </style>

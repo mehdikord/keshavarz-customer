@@ -46,6 +46,16 @@ export const Stores_Searching = defineStore('searching',{
                 })
             })
         },
+        Searching_Cities(name){
+            return new Promise((resolve, reject) => {
+                axios.get('public/cities',{params : {name : name}}).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+        },
+
 
     },
 

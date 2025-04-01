@@ -90,12 +90,11 @@ export default {
       this.searching = true;
       Stores_Searching().Searching(this.search_data).then(res=>{
         this.providers = res.data.result;
-        console.log(this.providers);
         this.find = true;
+        this.searching = false;
         if (this.providers.result.length > 0){
           localStorage.setItem('customer_keshavarz_searching', JSON.stringify(this.providers));
         }
-        this.searching = false;
       }).catch(error=>{
         if (error.response.status === 409){
           this.exists_dialog = true;
@@ -247,11 +246,10 @@ export default {
           </div>
         </div>
       </div>
-
     </template>
     <template v-else>
       <q-card-section class="q-pt-xs">
-        <template v-if="!find">
+        <template v-if="find === false">
           <q-card-section v-if="!searching">
             <div class="q-px-xs animation-fade-in">
               <div>
@@ -393,7 +391,7 @@ export default {
             <div class="text-center">
               <img src="assets/images/icons/farmer_one.svg" width="250" alt="farmer">
               <div class="q-mt-xs">
-                <strong class="text-red-7">متاسفانه برای {{providers.request.implement.name}} هیچ خدمات دهنده ای در نزدیکی شما یافت نشد !</strong>
+                <strong class="text-red-7">متاسفانه هیچ خدمات دهنده ای در نزدیکی شما یافت نشد !</strong>
               </div>
               <div class="q-mt-lg">
                 <q-btn @click="Reset_Search()"  color="teal-7" class="q-pt-sm q-pb-sm" rounded icon="fa-duotone fa-light fa-refresh" label="جستجتو مجدد خدمات "></q-btn>
@@ -460,7 +458,6 @@ export default {
               <provider_single :requested="requested_providers" @Requested="Get_Request_Users" v-for="provider in providers.result" :provider="provider" :request_id="providers.request.id" class="q-mb-lg"></provider_single>
             </div>
           </template>
-
         </template>
       </q-card-section>
 

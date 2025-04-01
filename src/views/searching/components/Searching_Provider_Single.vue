@@ -63,7 +63,7 @@ export default {
             <router-link :to="{name : 'providers_profile', params:{id:provider.user.id}}">
               <strong class=" text-teal-7 font-14">{{provider.user.name}}</strong>
             </router-link>
-            <div class="q-mt-sm">
+            <div class="q-mt-md">
               <span class="text-grey-8">فاصله : </span> <strong class="text-dark">{{provider.dis}}</strong> <span class="text-grey-8">کیلومتر</span>
             </div>
           </div>
@@ -75,7 +75,7 @@ export default {
         <span class="text-dark font-13 font-weight-600 q-ml-xs">{{provider.price_type}}</span>
       </div>
       <div class="col-12">
-        <div class="text-right">
+        <div class="text-right" style="margin-top: -25px!important;">
           <template v-if="Get_Status(provider.user.id) === 'pending'">
             <q-btn rounded icon="fa-duotone fa-light fa-hourglass-clock fa-fade" color="yellow-10" text-color="dark" label="درانتظار تایید" class="font-12" size="sm"></q-btn>
           </template>
@@ -93,7 +93,7 @@ export default {
 .provider-box{
   border-radius: 7px;
   border: 1px #05492b dashed;
-  padding: 14px 10px;
+  padding: 16px 10px;
 
 }
 

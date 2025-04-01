@@ -74,7 +74,7 @@ export default {
 </script>
 
 <template>
-  <q-card flat>
+  <q-card flat class="q-pt-xl">
     <q-card-section >
       <div class=" text-center q-mt-md res-page-title font-lalezar text-teal-6 animation-fade-in">
         ورود به حساب کاربری کشاورز

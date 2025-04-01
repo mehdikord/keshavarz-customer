@@ -9,6 +9,9 @@ import Searching from "@/views/searching/Searching.vue";
 import Requests from "@/views/requests/Requests.vue";
 import Lands from "@/views/lands/Lands.vue";
 import Provider_Profile from "@/views/providers/Provider_Profile.vue";
+import Request_Show from "@/views/requests/Request_Show.vue";
+import News from "@/views/news/News.vue";
+import Weathers from "@/views/weathers/Weathers.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,6 +57,22 @@ const router = createRouter({
       },
     },
     {
+      path : '/news',
+      component : News,
+      name : 'news',
+      meta : {
+        title : "خبرنامه کشاورزی"
+      },
+    },
+    {
+      path : '/weathers',
+      component : Weathers,
+      name : 'weathers',
+      meta : {
+        title : "هواشناسی"
+      },
+    },
+    {
       path : '/providers/profile/:id',
       component : Provider_Profile,
       name : 'providers_profile',
@@ -67,6 +86,14 @@ const router = createRouter({
       name : 'requests',
       meta : {
         title : "تاریخچه درخواست ها"
+      },
+    },
+    {
+      path : '/requests/show/:id',
+      component : Request_Show,
+      name : 'requests_show',
+      meta : {
+        title : "مشاهده درخواست"
       },
     },
     {
