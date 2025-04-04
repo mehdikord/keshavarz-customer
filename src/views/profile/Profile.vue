@@ -271,12 +271,12 @@ export default {
           </div>
           <div class="row q-mt-lg">
             <div class="col-4 ">
-              <q-icon name="fa-duotone fa-solid fa-house-building" color="green-8" size="18px"></q-icon>
-              <strong class="q-ml-xs text-grey-9 font-13"> : {{user.province.name}}</strong>
+              <q-icon name="fusera-duotone fa-solid fa-house-building" color="green-8" size="18px"></q-icon>
+              <strong v-if="user.province" class="q-ml-xs text-grey-9 font-13"> : {{user.province.name}}</strong>
             </div>
             <div class="col-4">
               <q-icon name="fa-duotone fa-solid fa-building-user" color="green-8" size="18px"></q-icon>
-              <strong class="q-ml-xs text-grey-9 font-13"> : {{user.city.name}}</strong>
+              <strong v-if="user.city" class="q-ml-xs text-grey-9 font-13"> : {{user.city.name}}</strong>
             </div>
             <div class="col-4">
               <q-icon name="fa-duotone fa-solid fa-id-card" color="green-8" size="18px"></q-icon>
