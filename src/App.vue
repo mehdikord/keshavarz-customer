@@ -3,6 +3,7 @@
 import Template_Main_Header from "@/components/Templates/Template_Main_Header.vue";
 import Template_Main_Footer from "@/components/Templates/Template_Main_Footer.vue";
 import Splash from "@/views/Splash.vue";
+import InstallPrompt from "@/InstallPrompt.vue";
 
 export default {
   name: "App",
@@ -10,6 +11,8 @@ export default {
     "template_header" : Template_Main_Header,
     "template_footer" : Template_Main_Footer,
     'splash' : Splash,
+    'install_prompt' : InstallPrompt
+
 
   },
   mounted() {
@@ -20,7 +23,13 @@ export default {
   data(){
     return {
       splash : false,
+      drawer:false,
 
+    }
+  },
+  methods:{
+    OpenDrawer(){
+        this.drawer = !this.drawer;
     }
   }
 }
@@ -29,12 +38,12 @@ export default {
 <template>
 
   <splash v-if="splash"></splash>
-  <q-layout v-else view="lHh Lpr lFf">
+  <q-layout v-else view="hHh LpR fFf">
     <div class="app-container">
         <q-header v-if="this.$route.name !== 'auth'" class="header-bg" elevated style=" margin: 0 auto">
-          <template_header></template_header>
+          <template_header @Drawer="OpenDrawer"></template_header>
         </q-header>
-        <q-drawer  side="left" behavior="mobile" elevated>
+        <q-drawer show-if-above v-model="drawer" side="left" elevated style="width: 200px!important;">
           <!-- drawer content -->
         </q-drawer>
         <q-page-container>
@@ -46,10 +55,14 @@ export default {
     </div>
 
   </q-layout>
+  <install_prompt></install_prompt>
 
 
 </template>
 <style>
+aside{
+  width: 260px!important;
+}
 
 .footer-style{
   max-width: 1024px !important;

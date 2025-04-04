@@ -28,6 +28,7 @@
     "postcss-rtlcss": "^5.5.1",
     "sass-embedded": "^1.81.0",
     "vite": "^6.0.5",
+    "vite-plugin-pwa": "^1.0.0",
     "vite-plugin-vue-devtools": "^7.6.8"
   }
 }

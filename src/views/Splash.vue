@@ -28,7 +28,7 @@ export default {
           navigation
           padding
           arrows
-          style="height: 90vh"
+          style="height: 80vh"
         
       >
         <q-carousel-slide :name="1" class="column no-wrap flex-center">
