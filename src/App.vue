@@ -4,6 +4,7 @@ import Template_Main_Header from "@/components/Templates/Template_Main_Header.vu
 import Template_Main_Footer from "@/components/Templates/Template_Main_Footer.vue";
 import Splash from "@/views/Splash.vue";
 import InstallPrompt from "@/InstallPrompt.vue";
+import Drawer from "@/views/Drawer.vue";
 
 export default {
   name: "App",
@@ -11,7 +12,8 @@ export default {
     "template_header" : Template_Main_Header,
     "template_footer" : Template_Main_Footer,
     'splash' : Splash,
-    'install_prompt' : InstallPrompt
+    'install_prompt' : InstallPrompt,
+    'drawer' : Drawer
 
 
   },
@@ -43,8 +45,8 @@ export default {
         <q-header v-if="this.$route.name !== 'auth'" class="header-bg" elevated style=" margin: 0 auto">
           <template_header @Drawer="OpenDrawer"></template_header>
         </q-header>
-        <q-drawer show-if-above v-model="drawer" side="left" elevated style="width: 200px!important;">
-          <!-- drawer content -->
+        <q-drawer show-if-above v-model="drawer" side="left" elevated style="background-color: #031f3b">
+          <drawer></drawer>
         </q-drawer>
         <q-page-container>
           <router-view/>
